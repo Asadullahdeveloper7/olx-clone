@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">OLX Marketplace</h1>
+            <div class="nav-actions">
+                <div id="authButtons">
+                    <button class="btn-secondary" onclick="showSignup()">Sign Up</button>
+                    <button class="btn-primary" onclick="showSignin()">Sign In</button>
+                </div>
+                
+                <div id="profileSection" style="display: none;">
+                    <span id="userProfile">Welcome!</span>
+                    <button class="sell-btn" onclick="showSellForm()">Post Ad</button>
+                    <button class="btn-secondary" onclick="showMyProfile()">My Ads</button>
+                    <button class="btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="signupModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Sign Up</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="signupForm">
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <div class="modal-buttons">
+                    <button type="submit">Sign Up</button>
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="signinModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Sign In</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="signinForm">
+                <input type="email" id="signinEmail" placeholder="Email" required>
+                <input type="password" id="signinPassword" placeholder="Password" required>
+                <div class="modal-buttons">
+                    <button type="submit">Sign In</button>
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>My Profile & Ads</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="profile-info">
+                <p><strong>Name:</strong> <span id="profileName">User</span></p>
+                <p><strong>Email:</strong> <span id="profileEmail">user@example.com</span></p>
+                <p><strong>Total Ads:</strong> <span id="totalAds">0</span></p>
+            </div>
+            <div id="myAdsList">
+                <p>No ads posted yet.</p>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="sellModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Post Your Ad</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="sellForm">
+                <input type="text" id="adTitle" placeholder="Title *" required>
+                <input type="number" id="adPrice" placeholder="Price *" required>
+                <textarea id="adDescription" placeholder="Description *" required></textarea>
+                <input type="url" id="adImage" placeholder="Image URL (optional)">
+                <div class="modal-buttons">
+                    <button type="submit">Post Ad</button>
+                    <button type="button" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="productDetailModal" class="modal" style="display: none;">
+        <div class="modal-content product-detail-modal">
+            <div class="modal-header">
+                <h3 id="productDetailTitle">Product Details</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="product-detail-content">
+                <div class="product-detail-image">
+                    <img id="productDetailImg" src="" alt="Product Image" class="detail-image">
+                </div>
+                <div class="product-detail-info">
+                    <h2 id="productDetailName">Product Name</h2>
+                    <div class="product-detail-price" id="productDetailPrice">$0</div>
+                    <div class="product-detail-meta">
+                        <div class="detail-rating" id="productDetailRating">★★★★★ 5.0</div>
+                        <div class="detail-category" id="productDetailCategory">Category</div>
+                    </div>
+                    <div class="product-detail-description">
+                        <h4>Description</h4>
+                        <p id="productDetailDesc">Product description goes here...</p>
+                    </div>
+                    <div class="product-detail-specs" id="productDetailSpecs">
+                    </div>
+                    <div class="product-detail-actions">
+                        <button class="btn-primary detail-contact-btn" onclick="contactSellerDetail()">Contact Seller</button>
+                        <button class="btn-secondary detail-save-btn" onclick="saveProductDetail()">♡ Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>Buy & Sell Everything</h2>
+            <p>Find great deals or sell your items quickly</p>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading products...</p>
+        </div>
+
+        <div id="productsContainer" class="products-grid">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
